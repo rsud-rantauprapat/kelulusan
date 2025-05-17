@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPK Prediksi Kelulusan - Metode SAW</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        header p {
+            text-align: center;
+            opacity: 0.9;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .result-box h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+        }
+
+        .final-score {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .status-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .criteria-card {
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 16px;
+            color: var(--dark-color);
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            animation: fadeEffect 1s;
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .step-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .tab button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            
+            header p {
+                font-size: 14px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            .card, .result-card {
+                padding: 15px;
+            }
+            
+            button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .final-score {
+                font-size: 20px;
+            }
+            
+            .status {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sistem Pendukung Keputusan Prediksi Kelulusan</h1>
+            <p>Metode Simple Additive Weighting (SAW) - Teknik Informatika</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'Input')">Input Data</button>
+            <button class="tablinks" onclick="openTab(event, 'Criteria')">Kriteria & Bobot</button>
+            <button class="tablinks" onclick="openTab(event, 'History')">Riwayat</button>
+            <button class="tablinks" onclick="openTab(event, 'About')">Tentang SAW</button>
+        </div>
+        
+        <div id="Input" class="tabcontent" style="display: block;">
+            <div class="alert alert-danger" id="errorAlert"></div>
+            <div class="alert alert-success" id="successAlert"></div>
+            
+            <div class="card">
+                <h2>Form Input Data Mahasiswa</h2>
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="nim">NIM</label>
+                        <input type="text" id="nim" required placeholder="Masukkan NIM mahasiswa">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" required placeholder="Masukkan nama lengkap mahasiswa">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ipk">IPK</label>
+                        <input type="number" id="ipk" min="0" max="4" step="0.01" required placeholder="Contoh: 3.50">
+                        <p class="info-text">Rentang nilai: 0.00 - 4.00</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sks">Jumlah SKS</label>
+                        <input type="number" id="sks" min="0" max="160" required placeholder="Jumlah SKS yang telah ditempuh">
+                        <p class="info-text">Total SKS program studi: 144 - 160</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kehadiran">Persentase Kehadiran (%)</label>
+                        <input type="number" id="kehadiran" min="0" max="100" required placeholder="Contoh: 85">
+                        <p class="info-text">Rentang nilai: 0 - 100</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nilai_skripsi">Nilai Skripsi</label>
+                        <input type="number" id="nilai_skripsi" min="0" max="100" required placeholder="Nilai skripsi (0-100)">
+                        <p class="info-text">Rentang nilai: 0 - 100</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lama_studi">Lama Studi (semester)</label>
+                        <input type="number" id="lama_studi" min="1" max="14" required placeholder="Contoh: 8">
+                        <p class="info-text">Lama studi dalam semester</p>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit">Hitung Prediksi</button>
+                        <button type="reset" class="btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="spinner" id="loadingSpinner"></div>
+            
+            <div class="result-card" id="resultCard">
+                <div class="result-header">
+                    <h2>Hasil Prediksi Kelulusan</h2>
+                    <p id="studentInfo"></p>
+                </div>
+                
+                <div class="result-box">
+                    <h3>Data Input</h3>
+                    <div class="result-item">
+                        <span class="result-label">IPK:</span>
+                        <span id="result-ipk"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Jumlah SKS:</span>
+                        <span id="result-sks"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Kehadiran:</span>
+                        <span id="result-kehadiran"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Nilai Skripsi:</span>
+                        <span id="result-nilai_skripsi"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Lama Studi:</span>
+                        <span id="result-lama_studi"></span>
+                    </div>
+                </div>
+                
+                <div class="result-box">
+                    <h3>Nilai Ternormalisasi (r<sub>ij</sub>)</h3>
+                    <div class="result-item">
+                        <span class="result-label">IPK:</span>
+                        <span id="norm-ipk"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Jumlah SKS:</span>
+                        <span id="norm-sks"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Kehadiran:</span>
+                        <span id="norm-kehadiran"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Nilai Skripsi:</span>
+                        <span id="norm-nilai_skripsi"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Lama Studi:</span>
+                        <span id="norm-lama_studi"></span>
+                    </div>
+                </div>
+                
+                <div class="result-box">
+                    <h3>Perhitungan V<sub>i</sub> = &Sigma; w<sub>j</sub> r<sub>ij</sub></h3>
+                    <div class="result-item">
+                        <span class="result-label">IPK (25%):</span>
+                        <span id="calc-ipk"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Jumlah SKS (20%):</span>
+                        <span id="calc-sks"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Kehadiran (15%):</span>
+                        <span id="calc-kehadiran"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Nilai Skripsi (25%):</span>
+                        <span id="calc-nilai_skripsi"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Lama Studi (15%):</span>
+                        <span id="calc-lama_studi"></span>
+                    </div>
+                </div>
+                
+                <div class="final-score">
+                    Skor Akhir (V<sub>i</sub>): <span id="final-score">0</span>
+                </div>
+                
+                <div class="status" id="status">
+                    <!-- Status akan ditampilkan di sini -->
+                </div>
+            </div>
+        </div>
+        
+        <div id="Criteria" class="tabcontent">
+            <div class="card criteria-card">
+                <h2>Kriteria dan Bobot</h2>
+                <p>Berikut adalah kriteria yang digunakan dalam sistem pendukung keputusan untuk prediksi kelulusan mahasiswa Teknik Informatika menggunakan metode SAW:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kriteria</th>
+                            <th>Bobot (%)</th>
+                            <th>Jenis</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IPK</td>
+                            <td>25%</td>
+                            <td>Benefit</td>
+                            <td>Semakin tinggi IPK, semakin baik</td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah SKS</td>
+                            <td>20%</td>
+                            <td>Benefit</td>
+                            <td>Semakin banyak SKS, semakin baik</td>
+                        </tr>
+                        <tr>
+                            <td>Kehadiran</td>
+                            <td>15%</td>
+                            <td>Benefit</td>
+                            <td>Semakin tinggi persentase kehadiran, semakin baik</td>
+                        </tr>
+                        <tr>
+                            <td>Nilai Skripsi</td>
+                            <td>25%</td>
+                            <td>Benefit</td>
+                            <td>Semakin tinggi nilai skripsi, semakin baik</td>
+                        </tr>
+                        <tr>
+                            <td>Lama Studi</td>
+                            <td>15%</td>
+                            <td>Cost</td>
+                            <td>Semakin singkat lama studi, semakin baik</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-title"><span class="step-number">1</span>Normalisasi Matriks Keputusan</div>
+                <p>Dalam metode SAW, setiap nilai di masing-masing kriteria akan dinormalisasi menggunakan rumus:</p>
+                <ul>
+                    <li>Untuk kriteria benefit: r<sub>ij</sub> = x<sub>ij</sub> / max(x<sub>i</sub>)</li>
+                    <li>Untuk kriteria cost: r<sub>ij</sub> = min(x<sub>i</sub>) / x<sub>ij</sub></li>
+                </ul>
+                <p>di mana:</p>
+                <ul>
+                    <li>r<sub>ij</sub> = nilai ternormalisasi</li>
+                    <li>x<sub>ij</sub> = nilai atribut yang dimiliki</li>
+                    <li>max(x<sub>i</sub>) = nilai maksimum dari kriteria</li>
+                    <li>min(x<sub>i</sub>) = nilai minimum dari kriteria</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-title"><span class="step-number">2</span>Penghitungan Nilai Preferensi</div>
+                <p>Setelah nilai ternormalisasi diperoleh, selanjutnya akan dihitung nilai preferensi menggunakan rumus:</p>
+                <p>V<sub>i</sub> = Σ w<sub>j</sub> × r<sub>ij</sub></p>
+                <p>di mana:</p>
+                <ul>
+                    <li>V<sub>i</sub> = nilai akhir preferensi</li>
+                    <li>w<sub>j</sub> = bobot kriteria</li>
+                    <li>r<sub>ij</sub> = nilai ternormalisasi</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-title"><span class="step-number">3</span>Klasifikasi Hasil</div>
+                <p>Berdasarkan nilai preferensi yang diperoleh, sistem akan mengklasifikasikan mahasiswa sebagai:</p>
+                <ul>
+                    <li><strong>"Lulus Tepat Waktu"</strong> jika nilai V<sub>i</sub> ≥ 0.75</li>
+                    <li><strong>"Tidak Lulus Tepat Waktu"</strong> jika nilai V<sub>i</sub> < 0.75</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="History" class="tabcontent">
+            <div class="card">
+                <h2>Riwayat Prediksi</h2>
+                <p>Data prediksi kelulusan mahasiswa yang telah diproses sebelumnya:</p>
+                
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>IPK</th>
+                            <th>SKS</th>
+                            <th>Kehadiran</th>
+                            <th>Nilai Skripsi</th>
+                            <th>Lama Studi</th>
+                            <th>Skor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data riwayat akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+                
+                <div class="spinner" id="historySpinner"></div>
+                <p id="noDataMessage" style="display: none; text-align: center; margin-top: 20px;">Belum ada data riwayat prediksi.</p>
+            </div>
+        </div>
+        
+        <div id="About" class="tabcontent">
+            <div class="card">
+                <h2>Tentang Metode SAW</h2>
+                <p>Simple Additive Weighting (SAW) adalah salah satu metode yang digunakan dalam Sistem Pendukung Keputusan (SPK). Metode ini sering juga dikenal sebagai metode penjumlahan terbobot.</p>
+                
+                <p>Konsep dasar metode SAW adalah mencari penjumlahan terbobot dari rating kinerja pada setiap alternatif pada semua atribut. Metode SAW membutuhkan proses normalisasi matriks keputusan (X) ke suatu skala yang dapat diperbandingkan dengan semua rating alternatif yang ada.</p>
+                
+                <h3>Langkah-langkah Metode SAW:</h3>
+                <ol>
+                    <li>Menentukan kriteria-kriteria yang akan dijadikan acuan dalam pengambilan keputusan.</li>
+                    <li>Menentukan rating kecocokan setiap alternatif pada setiap kriteria.</li>
+                    <li>Membuat matriks keputusan berdasarkan kriteria, kemudian melakukan normalisasi matriks berdasarkan persamaan yang disesuaikan dengan jenis atribut (atribut keuntungan/benefit atau atribut biaya/cost) sehingga diperoleh matriks ternormalisasi R.</li>
+                    <li>Hasil akhir diperoleh dari proses perankingan yaitu penjumlahan dari perkalian matriks ternormalisasi R dengan bobot preferensi sehingga diperoleh nilai terbesar yang dipilih sebagai alternatif terbaik sebagai solusi.</li>
+                </ol>
+                
+                <h3>Kelebihan Metode SAW:</h3>
+                <ul>
+                    <li>Sederhana dan mudah dipahami</li>
+                    <li>Dapat digunakan untuk mengukur kinerja relatif dari alternatif-alternatif keputusan</li>
+                    <li>Mempertimbangkan nilai maksimal dan minimal dari setiap kriteria</li>
+                    <li>Dapat diterapkan untuk berbagai bidang dan masalah keputusan</li>
+                </ul>
+                
+                <h3>Penerapan dalam Prediksi Kelulusan:</h3>
+                <p>Dalam konteks prediksi kelulusan mahasiswa, metode SAW digunakan untuk mengevaluasi kriteria-kriteria akademik seperti IPK, jumlah SKS, kehadiran, nilai skripsi, dan lama studi. Setiap kriteria diberi bobot sesuai dengan tingkat kepentingannya dalam menentukan kelulusan tepat waktu.</p>
+                
+                <p>Melalui proses normalisasi dan perhitungan nilai preferensi, metode SAW mampu memberikan skor akhir yang kemudian digunakan untuk mengklasifikasikan mahasiswa ke dalam kategori "Lulus Tepat Waktu" atau "Tidak Lulus Tepat Waktu".</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variabel global untuk nilai maksimum dan minimum
+        const maxValues = {
+            ipk: 4.0,
+            sks: 160,
+            kehadiran: 100,
+            nilai_skripsi: 100
+        };
+        
+        const minValues = {
+            lama_studi: 7 // Asumsi lama studi minimum ideal adalah 7 semester
+        };
+        
+        // Bobot kriteria
+        const weights = {
+            ipk: 0.25,
+            sks: 0.20,
+            kehadiran: 0.15,
+            nilai_skripsi: 0.25,
+            lama_studi: 0.15
+        };
+        
+        // ID Spreadsheet Google
+        const SPREADSHEET_ID = '1xcNbDn_rRQwGwDcLKMUOsxrPPnJH1uV4uBCOA3YjKmY';
+        
+        // Fungsi untuk membuka tab
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            const tablinks = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+            
+            // Jika tab History dipilih, muat data riwayat
+            if (tabName === 'History') {
+                loadHistoryData();
+            }
+        }
+        
+        // Fungsi untuk normalisasi nilai (benefit)
+        function normalizeBenefit(value, maxValue) {
+            return value / maxValue;
+        }
+        
+        // Fungsi untuk normalisasi nilai (cost)
+        function normalizeCost(value, minValue) {
+            return minValue / value;
+        }
+        
+        // Fungsi untuk mengambil data dari form
+        function getFormData() {
+            return {
+                nim: document.getElementById('nim').value,
+                nama: document.getElementById('nama').value,
+                ipk: parseFloat(document.getElementById('ipk').value),
+                sks: parseInt(document.getElementById('sks').value),
+                kehadiran: parseInt(document.getElementById('kehadiran').value),
+                nilai_skripsi: parseInt(document.getElementById('nilai_skripsi').value),
+                lama_studi: parseInt(document.getElementById('lama_studi').value)
+            };
+        }
+        
+        // Fungsi untuk validasi input
+        function validateInput(data) {
+            if (data.ipk < 0 || data.ipk > 4) {
+                showError("IPK harus berada di antara 0 dan 4!");
+                return false;
+            }
+            
+            if (data.sks < 0 || data.sks > 160) {
+                showError("Jumlah SKS harus berada di antara 0 dan 160!");
+                return false;
+            }
+            
+            if (data.kehadiran < 0 || data.kehadiran > 100) {
+                showError("Persentase kehadiran harus berada di antara 0 dan 100!");
+                return false;
+            }
+            
+            if (data.nilai_skripsi < 0 || data.nilai_skripsi > 100) {
+                showError("Nilai skripsi harus berada di antara 0 dan 100!");
+                return false;
+            }
+            
+            if (data.lama_studi < 1) {
+                showError("Lama studi tidak boleh kurang dari 1 semester!");
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Fungsi untuk menampilkan pesan error
+        function showError(message) {
+            const errorAlert = document.getElementById('errorAlert');
+            errorAlert.textContent = message;
+            errorAlert.style.display = 'block';
+            
+            // Sembunyikan pesan error setelah 5 detik
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Fungsi untuk menampilkan pesan sukses
+        function showSuccess(message) {
+            const successAlert = document.getElementById('successAlert');
+            successAlert.textContent = message;
+            successAlert.style.display = 'block';
+            
+            // Sembunyikan pesan sukses setelah 5 detik
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Fungsi untuk menghitung prediksi kelulusan
+        function calculatePrediction(data) {
+            // Normalisasi nilai
+            const normalizedValues = {
+                ipk: normalizeBenefit(data.ipk, maxValues.ipk),
+                sks: normalizeBenefit(data.sks, maxValues.sks),
+                kehadiran: normalizeBenefit(data.kehadiran, maxValues.kehadiran),
+                nilai_skripsi: normalizeBenefit(data.nilai_skripsi, maxValues.nilai_skripsi),
+                lama_studi: normalizeCost(data.lama_studi, minValues.lama_studi)
+            };
+            
+            // Menghitung skor terbobot untuk setiap kriteria
+            const weightedScores = {
+                ipk: normalizedValues.ipk * weights.ipk,
+                sks: normalizedValues.sks * weights.sks,
+                kehadiran: normalizedValues.kehadiran * weights.kehadiran,
+                nilai_skripsi: normalizedValues.nilai_skripsi * weights.nilai_skripsi,
+                lama_studi: normalizedValues.lama_studi * weights.lama_studi
+            };
+            
+            // Menghitung skor akhir
+            const finalScore = 
+                weightedScores.ipk + 
+                weightedScores.sks + 
+                weightedScores.kehadiran + 
+                weightedScores.nilai_skripsi + 
+                weightedScores.lama_studi;
+            
+            // Klasifikasi hasil
+            const isGraduateOnTime = finalScore >= 0.75;
+            
+            return {
+                data: data,
+                normalizedValues: normalizedValues,
+                weightedScores: weightedScores,
+                finalScore: finalScore,
+                isGraduateOnTime: isGraduateOnTime
+            };
+        }
+        
+        // Fungsi untuk menampilkan hasil prediksi
+        function displayResult(result) {
+            // Tampilkan kartu hasil
+            document.getElementById('resultCard').style.display = 'block';
+            
+            // Informasi mahasiswa
+            document.getElementById('studentInfo').textContent = `${result.data.nim} - ${result.data.nama}`;
+            
+            // Data input
+            document.getElementById('result-ipk').textContent = result.data.ipk.toFixed(2);
+            document.getElementById('result-sks').textContent = result.data.sks;
+            document.getElementById('result-kehadiran').textContent = result.data.kehadiran + '%';
+            document.getElementById('result-nilai_skripsi').textContent = result.data.nilai_skripsi;
+            document.getElementById('result-lama_studi').textContent = result.data.lama_studi + ' semester';
+            
+            // Nilai ternormalisasi
+            document.getElementById('norm-ipk').textContent = result.normalizedValues.ipk.toFixed(4);
+            document.getElementById('norm-sks').textContent = result.normalizedValues.sks.toFixed(4);
+            document.getElementById('norm-kehadiran').textContent = result.normalizedValues.kehadiran.toFixed(4);
+            document.getElementById('norm-nilai_skripsi').textContent = result.normalizedValues.nilai_skripsi.toFixed(4);
+            document.getElementById('norm-lama_studi').textContent = result.normalizedValues.lama_studi.toFixed(4);
+            
+            // Perhitungan nilai terbobot
+            document.getElementById('calc-ipk').textContent = `${result.normalizedValues.ipk.toFixed(4)} × ${weights.ipk} = ${result.weightedScores.ipk.toFixed(4)}`;
+            document.getElementById('calc-sks').textContent = `${result.normalizedValues.sks.toFixed(4)} × ${weights.sks} = ${result.weightedScores.sks.toFixed(4)}`;
+            document.getElementById('calc-kehadiran').textContent = `${result.normalizedValues.kehadiran.toFixed(4)} × ${weights.kehadiran} = ${result.weightedScores.kehadiran.toFixed(4)}`;
+            document.getElementById('calc-nilai_skripsi').textContent = `${result.normalizedValues.nilai_skripsi.toFixed(4)} × ${weights.nilai_skripsi} = ${result.weightedScores.nilai_skripsi.toFixed(4)}`;
+            document.getElementById('calc-lama_studi').textContent = `${result.normalizedValues.lama_studi.toFixed(4)} × ${weights.lama_studi} = ${result.weightedScores.lama_studi.toFixed(4)}`;
+            
+            // Skor akhir
+            document.getElementById('final-score').textContent = result.finalScore.toFixed(4);
+            
+            // Status kelulusan
+            const statusElement = document.getElementById('status');
+            if (result.isGraduateOnTime) {
+                statusElement.textContent = 'LULUS TEPAT WAKTU';
+                statusElement.className = 'status status-success';
+            } else {
+                statusElement.textContent = 'TIDAK LULUS TEPAT WAKTU';
+                statusElement.className = 'status status-danger';
+            }
+            
+            // Scroll ke hasil
+            document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Fungsi untuk menyimpan data ke Google Spreadsheet
+        async function saveToSpreadsheet(result) {
+            try {
+                // Menampilkan spinner
+                document.getElementById('loadingSpinner').style.display = 'block';
+                
+                // Persiapkan data untuk dikirim
+                const statusText = result.isGraduateOnTime ? 'Lulus Tepat Waktu' : 'Tidak Lulus Tepat Waktu';
+                
+                // Data yang akan dikirim
+                const formData = new FormData();
+                formData.append('nim', result.data.nim);
+                formData.append('nama', result.data.nama);
+                formData.append('ipk', result.data.ipk);
+                formData.append('sks', result.data.sks);
+                formData.append('kehadiran', result.data.kehadiran);
+                formData.append('nilai_skripsi', result.data.nilai_skripsi);
+                formData.append('lama_studi', result.data.lama_studi);
+                formData.append('skor', result.finalScore.toFixed(4));
+                formData.append('status', statusText);
+                
+                // URL Google Apps Script Web App
+                const scriptURL = `https://script.google.com/macros/s/AKfycbwHMOGlv8aM3GJM3izkA3P5lPjgrOkfuYevsVzlKuZcREqKE0UYtaSqABfLKM21RjdHzg/exec`;
+                
+                // Kirim data
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    showSuccess("Data berhasil disimpan ke database!");
+                } else {
+                    throw new Error('Server merespon dengan error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Gagal menyimpan data: ' + error.message);
+            } finally {
+                // Sembunyikan spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        }
+        
+        // Fungsi untuk memuat data riwayat dari spreadsheet
+        async function loadHistoryData() {
+            try {
+                // Tampilkan spinner
+                document.getElementById('historySpinner').style.display = 'block';
+                
+                // Sembunyikan pesan tidak ada data
+                document.getElementById('noDataMessage').style.display = 'none';
+                
+                // URL Google Apps Script Web App untuk mengambil data
+                const scriptURL = `https://script.google.com/macros/s/AKfycbwHMOGlv8aM3GJM3izkA3P5lPjgrOkfuYevsVzlKuZcREqKE0UYtaSqABfLKM21RjdHzg/exec`;
+                
+                // Kirim permintaan GET
+                const response = await fetch(scriptURL + '?action=getAll');
+                const data = await response.json();
+                
+                // Referensi ke tabel
+                const tableBody = document.querySelector('#historyTable tbody');
+                tableBody.innerHTML = '';
+                
+                // Periksa apakah ada data
+                if (data && data.length > 0) {
+                    // Isi tabel dengan data
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        
+                        tr.innerHTML = `
+                            <td>${row.nim}</td>
+                            <td>${row.nama}</td>
+                            <td>${parseFloat(row.ipk).toFixed(2)}</td>
+                            <td>${row.sks}</td>
+                            <td>${row.kehadiran}%</td>
+                            <td>${row.nilai_skripsi}</td>
+                            <td>${row.lama_studi} semester</td>
+                            <td>${parseFloat(row.skor).toFixed(4)}</td>
+                            <td class="${row.status === 'Lulus Tepat Waktu' ? 'status-success' : 'status-danger'}">${row.status}</td>
+                        `;
+                        
+                        tableBody.appendChild(tr);
+                    });
+                } else {
+                    // Tampilkan pesan tidak ada data
+                    document.getElementById('noDataMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('noDataMessage').textContent = 'Gagal memuat data: ' + error.message;
+                document.getElementById('noDataMessage').style.display = 'block';
+            } finally {
+                // Sembunyikan spinner
+                document.getElementById('historySpinner').style.display = 'none';
+            }
+        }
+        
+        // Event listener saat form disubmit
+        document.getElementById('studentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Ambil data dari form
+            const formData = getFormData();
+            
+            // Validasi input
+            if (!validateInput(formData)) {
+                return;
+            }
+            
+            // Hitung prediksi
+            const result = calculatePrediction(formData);
+            
+            // Tampilkan hasil
+            displayResult(result);
+            
+            // Simpan data ke spreadsheet
+            await saveToSpreadsheet(result);
+        });
+        
+        // Event listener saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi tab
+            document.querySelector('.tablinks').click();
+        });
+    </script>
+</body>
+</html>
